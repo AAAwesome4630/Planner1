@@ -1,0 +1,15 @@
+<h2>Create a Classroom</h2>
+
+<%= form_for @classroom do |f| %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :subject %><br>
+    <%= f.text_field :subject %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

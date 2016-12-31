@@ -11,7 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161119012713) do
+ActiveRecord::Schema.define(version: 20161218185942) do
+
+  create_table "assignments", force: :cascade do |t|
+    t.date     "due_date"
+    t.string   "name"
+    t.integer  "classroom_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "classrooms", force: :cascade do |t|
+    t.string   "name",                         null: false
+    t.string   "subject"
+    t.integer  "numberOfStudents", default: 0, null: false
+    t.integer  "teacher_id"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "classrooms", ["name", "teacher_id"], name: "index_classrooms_on_name_and_teacher_id"
+  add_index "classrooms", ["numberOfStudents", "teacher_id"], name: "index_classrooms_on_numberOfStudents_and_teacher_id"
+  add_index "classrooms", ["subject", "teacher_id"], name: "index_classrooms_on_subject_and_teacher_id"
+
+  create_table "sc_relationships", force: :cascade do |t|
+    t.integer  "classroom_id"
+    t.integer  "student_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "sc_relationships", ["classroom_id", "student_id"], name: "index_sc_relationships_on_classroom_id_and_student_id", unique: true
+  add_index "sc_relationships", ["classroom_id"], name: "index_sc_relationships_on_classroom_id"
+  add_index "sc_relationships", ["student_id"], name: "index_sc_relationships_on_student_id"
 
   create_table "students", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -48,6 +80,14 @@ ActiveRecord::Schema.define(version: 20161119012713) do
 
   add_index "teachers", ["email"], name: "index_teachers_on_email", unique: true
   add_index "teachers", ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
+
+  create_table "tests", force: :cascade do |t|
+    t.date     "date"
+    t.string   "topic"
+    t.integer  "classroom_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

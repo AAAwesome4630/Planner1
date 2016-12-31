@@ -1,0 +1,14 @@
+<%if student_signed_in?%>
+<%if @status%>
+I am the one!!!!!!!!!!!
+<%elsif !@status%>
+<%= render '/layouts/relationship_form'%>
+<%end%>
+<%elsif teacher_signed_in?%>
+<%if @tstatus%>
+<h2>Create a new Assignment</h2>
+<%=render '/layouts/assignment_form'%><br>
+</br><h2>Create a new Test</h2>
+<%=render '/layouts/test_form'%>
+<%end%>
+<%end%>
