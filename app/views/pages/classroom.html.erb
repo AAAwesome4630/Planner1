@@ -1,6 +1,9 @@
 <%if student_signed_in?%>
 <%if @status%>
-I am the one!!!!!!!!!!!
+I am the one!!!!!!!!!!!<br></br>
+<% for @t in @t_filez do%>
+<%=@t.name%>  <%= link_to"Download It", @t.file.url%><br></br>
+<%end%>
 <%elsif !@status%>
 <%= render '/layouts/relationship_form'%>
 <%end%>
@@ -9,6 +12,8 @@ I am the one!!!!!!!!!!!
 <h2>Create a new Assignment</h2>
 <%=render '/layouts/assignment_form'%><br>
 </br><h2>Create a new Test</h2>
-<%=render '/layouts/test_form'%>
+<%=render '/layouts/test_form'%><br>
+</br><h2>Upload a File</h2>
+<%= render '/layouts/file_form'%>
 <%end%>
 <%end%>

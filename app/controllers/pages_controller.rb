@@ -68,6 +68,8 @@ class PagesController < ApplicationController
       
       @crelationships = ScRelationship.all.where("classroom_id = ?", Classroom.find_by_id(params[:id]).id )
       
+      @t_filez = TFile.all.where("classroom_id = ?", Classroom.find_by_id(params[:id]).id)
+      
       if(student_signed_in?)
 
         for relationship in @crelationships do
@@ -94,6 +96,8 @@ class PagesController < ApplicationController
     @assignment = Assignment.new
     
     @test = Test.new
+    
+    @t_file = TFile.new
     
     
       
