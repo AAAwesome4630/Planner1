@@ -99,6 +99,8 @@ class PagesController < ApplicationController
     
     @t_file = TFile.new
     
+    @announcement = Announcement.new
+    
     
       
     

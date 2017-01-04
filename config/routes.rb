@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :assignments
   resources :tests
   resources :t_files
+  resources :announcements
   root 'pages#index'
 
   get 'home' =>'pages#home'
