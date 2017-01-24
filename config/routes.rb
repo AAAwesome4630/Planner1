@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :teachers
+      devise_for :teachers
+      devise_for :students
+      devise_for :users
+      resources :classrooms
+      resources :sc_relationships
+      resources :assignments
+      resources :tests
+      resources :t_files
+      resources :announcements
+    end
+  end
+  
   devise_for :teachers
   devise_for :students
   devise_for :users
@@ -19,6 +35,8 @@ Rails.application.routes.draw do
   get 'newclassroom' =>'forms#newclassroom'
   
   get 'classroom/:id' =>'pages#classroom'
+  
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
